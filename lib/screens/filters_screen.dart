@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_complete_guide/widgets/main_drawer.dart';
 
 class FiltersScreen extends StatefulWidget {
-  const FiltersScreen({Key key}) : super(key: key);
   static const routeName = '/filters';
+
+  final Function savedFilters;
+  final Map<String, bool> currentFilters;
+  FiltersScreen(this.currentFilters, this.savedFilters);
 
   @override
   State<FiltersScreen> createState() => _FiltersScreenState();
@@ -17,6 +17,15 @@ class _FiltersScreenState extends State<FiltersScreen> {
   var _vegetarian = false;
   var _vegan = false;
   var _lactoseFree = false;
+
+  @override
+  void initState() {
+    _glutenFree = widget.currentFilters['gluten'];
+    _lactoseFree = widget.currentFilters['lactose'];
+    _vegan = widget.currentFilters['vegan'];
+    _vegetarian = widget.currentFilters['vegetarian'];
+    super.initState();
+  }
 
   Widget buildSwitchTile(
     String title,
@@ -38,6 +47,20 @@ class _FiltersScreenState extends State<FiltersScreen> {
       child: Scaffold(
         appBar: AppBar(
           title: Text('Your Filters'),
+          actions: [
+            IconButton(
+              onPressed: () {
+                final selectedFilters = {
+                  'gluten': _glutenFree,
+                  'lactose': _lactoseFree,
+                  'vegan': _vegan,
+                  'vegetarian': _vegetarian,
+                };
+                widget.savedFilters(selectedFilters);
+              },
+              icon: Icon(Icons.save),
+            ),
+          ],
         ),
         drawer: MainDrawer(),
         body: Column(
@@ -87,10 +110,10 @@ class _FiltersScreenState extends State<FiltersScreen> {
                     'Only include Vegetarian meals. ',
                     (value) {
                       setState(() {
-                        _vegan = value;
+                        _vegetarian = value;
                       });
                     },
-                    _vegan,
+                    _vegetarian,
                   ),
                 ],
               ),
