@@ -8,7 +8,7 @@
 <img width="185" alt="image" src="https://user-images.githubusercontent.com/94914338/222133881-3749321c-7b2f-40f2-bc35-13aa6fb120c9.png">
 <img width="185" alt="image" src="https://user-images.githubusercontent.com/94914338/222133983-659f5bb2-77e6-49b8-9e31-dca09e7f1333.png">
 
--meals category wise
+- meals category wise
 <img width="187" alt="image" src="https://user-images.githubusercontent.com/94914338/222134131-a7dcc050-7be0-4d73-ae30-049b001c4081.png">
 
 - ingrediants and steps to prepare (scrollable view)
